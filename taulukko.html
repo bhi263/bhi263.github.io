@@ -1,32 +1,11 @@
-<!-- Bootstrap Table Example -->
-<div class="container my-4">
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Kaupunki</th>
-        <th>Sää</th>
-        <th>Lämpötila</th>
-        <th>Tuuli</th>
-        <th>Pilvisyys</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="kaupunkiCell"></td>
-        <td id="saaCell"></td>
-        <td id="lampotilaCell"></td>
-        <td id="tuuliCell"></td>
-        <td id="pilvisyysCell"></td>
-      </tr>
-    </tbody>
-  </table>
-</div><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <title>Helsingin sää</title>
+    <title>Bootstrapharjoitussivusto</title>
+
     <!--  Bootstrap CSS ja JS linkitys -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -41,42 +20,74 @@
     </style>
 </head>
 
+
 <body>
-    <nav class="navbar navbar-expand-sm navbar-custom navbar-dark">
+    <!-- Navikointipalkki -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Navikointipalkki</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="karuselli.html">Karuselli</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ruudukko.html">Ruudukko</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kortit.html">Kortit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="haitari.html">Haitari</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="taulukko.html">Taulukko</a>
+                    </li>
+                </ul>
             </div>
-            <!-- Linkit -->
-            <ul class="navbar-nav">
-                <li class="nav">
-                    <a class="nav-link" href="index.html">Etusivu</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="karuselli.html">Karuselli</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="ruudukko.html">Ruudukko</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="kortit.html">Kortit</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="haitari.html">Haitari</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="taulukko.html">Taulukko</a>
-                </li>
-        </div>
         </div>
     </nav>
     <h3>Kaupungin sää: taulukko</h3>
-    <form>
+    <form onsubmit="hae(); return false;">
         <p>
             <label>Kaupunki:</label>
             <input type="text" id="etsittavaK" size="30">
         </p>
-        <input type="button" value="Hae" onclick="hae()">
+        <button type="submit" class="btn btn-primary">Hae</button>
     </form>
     <div id="virheilmoitus"></div>
+
+    <!-- Taulukko -->
+    <div class="container my-4">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Kaupunki</th>
+                    <th>Sää</th>
+                    <th>Lämpötila</th>
+                    <th>Tuuli</th>
+                    <th>Pilvisyys</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="kaupunkiCell"></td>
+                    <td id="saaCell"></td>
+                    <td id="lampotilaCell"></td>
+                    <td id="tuuliCell"></td>
+                    <td id="pilvisyysCell"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <script>
         "use strict"
@@ -95,8 +106,15 @@
                 })
 
             function haeSaa(saadata) {
-                var teksti = saadata.weather[0].description + "<br>Lämpötila: " + saadata.main.temp + "°<br>Tuuli: " + saadata.wind.speed + "m/s<br>Pilvisyys: " + saadata.clouds.all + "%"
-                document.getElementById("vastaus").innerHTML = "<h3>" + kaupunki + "</h3>" + teksti
+                var saa = saadata.weather[0].description
+                var lampotila = saadata.main.temp + "°"
+                var tuuli = saadata.wind.speed + "m/s"
+                var pilvisyys = saadata.clouds.all + "%"
+                document.getElementById("kaupunkiCell").innerHTML = "<h3>" + kaupunki + "</h3>"
+                document.getElementById("saaCell").innerHTML = saa
+                document.getElementById("lampotilaCell").innerHTML = lampotila
+                document.getElementById("tuuliCell").innerHTML = tuuli
+                document.getElementById("pilvisyysCell").innerHTML = pilvisyys
             }
         }
 

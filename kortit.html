@@ -1,115 +1,125 @@
-<!-- Bootstrap Cards Example -->
-<div class="container my-4">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <img src="https://via.placeholder.com/300x150?text=Kuva+1" class="card-img-top" alt="Kuva 1">
-        <div class="card-body">
-          <h5 class="card-title">Sää</h5>
-          <p class="card-text" id="vastaus"></p>
-        </div>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Bootstrapharjoitussivusto</title>
+
+  <!--  Bootstrap CSS ja JS linkitys -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Lomakekenttien laitto vasemmalta tasan -->
+  <style>
+    label {
+      display: block;
+      width: 6em;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navikointipalkki -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Navikointipalkki</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Etusivu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="karuselli.html">Karuselli</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ruudukko.html">Ruudukko</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="kortit.html">Kortit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="haitari.html">Haitari</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="taulukko.html">Taulukko</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="https://via.placeholder.com/300x150?text=Kuva+2" class="card-img-top" alt="Kuva 2">
-        <div class="card-body">
-          <h5 class="card-title">Info</h5>
-          <p class="card-text">Tähän voit lisätä lisätietoja.</p>
+  </nav>
+  <h3>Kaupungin sää: kortit</h3>
+  <form onsubmit="hae(); return false;">
+    <p>
+      <label>Kaupunki:</label>
+      <input type="text" id="etsittavaK" size="30">
+    </p>
+    <button type="submit" class="btn btn-primary">Hae</button>
+  </form>
+  <div id="virheilmoitus"></div>
+
+  <!-- Kortit -->
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="Kuva1.svg" class="card-img-top" alt="Kuva 1">
+          <div class="card-body">
+            <h5 class="card-title" id="otsikko">Sää</h5>
+            <p class="card-text" id="vastaus"></p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="https://via.placeholder.com/300x150?text=Kuva+3" class="card-img-top" alt="Kuva 3">
-        <div class="card-body">
-          <h5 class="card-title">Ohje</h5>
-          <p class="card-text">Syötä kaupungin nimi ja paina "Hae".</p>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="Kuva2.svg" class="card-img-top" alt="Kuva 2">
+          <div class="card-body">
+            <h5 class="card-title">Info</h5>
+            <p class="card-text">Tähän voit lisätä lisätietoja.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="Kuva3.svg" class="card-img-top" alt="Kuva 3">
+          <div class="card-body">
+            <h5 class="card-title">Ohje</h5>
+            <p class="card-text">Syötä kaupungin nimi ja paina "Hae".</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div><!DOCTYPE html>
-<html>
 
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
-    <title>Helsingin sää</title>
-    <!--  Bootstrap CSS ja JS linkitys -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    "use strict"
+    function hae() {
+      var kaupunki = document.getElementById("etsittavaK").value;
+      var linkki = "http://api.openweathermap.org/data/2.5/weather?lang=fi&q=" + kaupunki + "&units=metric&APPID=9b12a4cf1ef579103341914225814961"
+      fetch(linkki)
+        .then(function (response) {
+          return response.json()
+        })
+        .then(function (data) {
+          haeSaa(data)
+        })
+        .catch(function (error) {
+          document.getElementById("virheilmoitus").innerHTML = "Ilmoitamaasi kaupunkia ei löydy."
+        })
 
-    <!-- Lomakekenttien laitto vasemmalta tasan -->
-    <style>
-        label {
-            display: block;
-            width: 6em;
-            float: left;
-        }
-    </style>
-</head>
+      function haeSaa(saadata) {
+        var teksti = saadata.weather[0].description + "<br>Lämpötila: " + saadata.main.temp + "°<br>Tuuli: " + saadata.wind.speed + "m/s<br>Pilvisyys: " + saadata.clouds.all + "%"
+        document.getElementById("otsikko").innerHTML = kaupunki
+        document.getElementById("vastaus").innerHTML = teksti
+      }
+    }
 
-<body>
-    <nav class="navbar navbar-expand-sm navbar-custom navbar-dark">
-        <div class="container-fluid">
-            </div>
-            <!-- Linkit -->
-            <ul class="navbar-nav">
-                <li class="nav">
-                    <a class="nav-link" href="index.html">Etusivu</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="karuselli.html">Karuselli</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="ruudukko.html">Ruudukko</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="kortit.html">Kortit</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="haitari.html">Haitari</a>
-                </li>
-                <li class="nav">
-                    <a class="nav-link" href="taulukko.html">Taulukko</a>
-                </li>
-        </div>
-        </div>
-    </nav>
-    <h3>Kaupungin sää: kortit</h3>
-    <form>
-        <p>
-            <label>Kaupunki:</label>
-            <input type="text" id="etsittavaK" size="30">
-        </p>
-        <input type="button" value="Hae" onclick="hae()">
-    </form>
-    <div id="virheilmoitus"></div>
-
-    <script>
-        "use strict"
-        function hae() {
-            var kaupunki = document.getElementById("etsittavaK").value;
-            var linkki = "http://api.openweathermap.org/data/2.5/weather?lang=fi&q=" + kaupunki + "&units=metric&APPID=9b12a4cf1ef579103341914225814961"
-            fetch(linkki)
-                .then(function (response) {
-                    return response.json()
-                })
-                .then(function (data) {
-                    haeSaa(data)
-                })
-                .catch(function (error) {
-                    document.getElementById("virheilmoitus").innerHTML = "Ilmoitamaasi kaupunkia ei löydy."
-                })
-
-            function haeSaa(saadata) {
-                var teksti = saadata.weather[0].description + "<br>Lämpötila: " + saadata.main.temp + "°<br>Tuuli: " + saadata.wind.speed + "m/s<br>Pilvisyys: " + saadata.clouds.all + "%"
-                document.getElementById("vastaus").innerHTML = "<h3>" + kaupunki + "</h3>" + teksti
-            }
-        }
-
-    </script>
+  </script>
 </body>
 
 </html>
