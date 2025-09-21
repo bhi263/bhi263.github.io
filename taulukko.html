@@ -93,7 +93,7 @@
         "use strict"
         function hae() {
             var kaupunki = document.getElementById("etsittavaK").value;
-            var linkki = "http://api.openweathermap.org/data/2.5/weather?lang=fi&q=" + kaupunki + "&units=metric&APPID=9b12a4cf1ef579103341914225814961"
+            var linkki = "https://api.openweathermap.org/data/2.5/weather?lang=fi&q=" + kaupunki + "&units=metric&APPID=9b12a4cf1ef579103341914225814961"
             fetch(linkki)
                 .then(function (response) {
                     return response.json()
