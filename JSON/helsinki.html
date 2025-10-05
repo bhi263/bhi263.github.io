@@ -48,45 +48,31 @@
     </div>
   </nav>
   <h3>Helsingin sää</h3>
-  <form onsubmit="hae(); return false;">
-    <p>
-      <label>Kaupunki:</label>
-      <input type="text" id="etsittavaK" size="30">
-    </p>
-    <button type="submit" class="btn btn-primary">Hae</button>
-  </form>
   <div id="virheilmoitus"></div>
-  <h4 id="otsikko"></h4>
   <div id="vastaus"></div>
 
   <script>
     "use strict"
-    function hae() {
-      var kaupunki = document.getElementById("etsittavaK").value;
-      var linkki = "https://api.openweathermap.org/data/2.5/weather?id=658225&units=metric&lang=fi&APPID=9b12a4cf1ef579103341914225814961"
-      fetch(linkki)
-        .then(function (response) {
-          return response.json()
-        })
-        .then(function (data) {
-          haeSaa(data)
-        })
-        .catch(function (error) {
-          document.getElementById("virheilmoitus").innerHTML = "Ilmoitamaasi kaupunkia ei löydy."
-        })
+    var linkki = "https://api.openweathermap.org/data/2.5/weather?id=658225&units=metric&lang=fi&APPID=9b12a4cf1ef579103341914225814961"
+    fetch(linkki)
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (data) {
+        haeSaa(data)
+      })
+      .catch(function (error) {
+        document.getElementById("virheilmoitus").innerHTML = "Ilmoitamaasi kaupunkia ei löydy."
+      })
 
-      function haeSaa(saadata) {
-        var kellonaika = new Date(saadata.dt * 1000);
-        var tunnit = kellonaika.getHours();
-        var minuutit = kellonaika.getMinutes();
-        if (minuutit < 10) {
-          minuutit = "0" + minuutit;
-        var teksti ="Sää kello " + tunnit + ":" + minuutit + "<br" + saadata.weather[0].description + "<br>Lämpötila: " + saadata.main.temp + "°<br>Tuuli: " + saadata.wind.speed + "m/s<br>Pilvisyys: " + saadata.clouds.all + "%"
-        document.getElementById("otsikko").innerHTML = kaupunki
+    function haeSaa(saadata) {
+      var kellonaika = new Date(saadata.dt * 1000);
+      var tunnit = kellonaika.getHours();
+      var minuutit = kellonaika.getMinutes();
+      if (minuutit < 10) {
+        minuutit = "0" + minuutit;
+        var teksti = "Sää kello " + tunnit + ":" + minuutit + "<br>" + saadata.weather[0].description + "<br>Lämpötila: " + saadata.main.temp + "°<br>Tuuli: " + saadata.wind.speed + "m/s<br>Pilvisyys: " + saadata.clouds.all + "%"
         document.getElementById("vastaus").innerHTML = teksti
-
-
-        }
       }
     }
 
