@@ -71,10 +71,11 @@
       var minuutit = kellonaika.getMinutes();
       if (minuutit < 10) {
         minuutit = "0" + minuutit;
-        var teksti = "Sää kello " + tunnit + ":" + minuutit + "<br>" + saadata.weather[0].description + "<br>Lämpötila: " + saadata.main.temp + "°<br>Tuuli: " + saadata.wind.speed + "m/s<br>Pilvisyys: " + saadata.clouds.all + "%"
-        document.getElementById("vastaus").innerHTML = teksti
       }
+      var teksti = "Sää kello " + tunnit + ":" + minuutit + "<br>" + saadata.weather[0].description + "<br>Lämpötila: " + saadata.main.temp + "°<br>Tuuli: " + saadata.wind.speed + "m/s<br>Pilvisyys: " + saadata.clouds.all + "%"
+      document.getElementById("vastaus").innerHTML = teksti
     }
+
 
   </script>
 </body>
