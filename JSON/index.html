@@ -72,12 +72,13 @@
                 "Nimi: " + vastausJSON.opintojakso.nimi + "<br>" +
                 "Tunnus: " + vastausJSON.opintojakso.tunnus + "<br>" +
                 "Opintopisteet: " + vastausJSON.opintojakso.opintopisteet + "<br>";
-            vastaus += "<h3>Aiheet</h3><ul>";
+            vastaus += "<p><h3>Aiheet</h3>";
             for (var i = 0; i < vastausJSON.tekniikat.length; i++) {
-                vastaus += "<li><a href='" + vastausJSON.tekniikat[i].linkki + "'>" +
-                    vastausJSON.tekniikat[i].nimi + "</a></li>";
+                vastaus += "<b>Aihe: " + vastausJSON.tekniikat[i] + "</b>";
+                vastaus +=" <a href='" + vastausJSON.tekniikat[i].linkki + "'>" +
+                    vastausJSON.tekniikat[i].nimi + "</a>" + "<br>";
             }
-            vastaus += "</ul>";
+            vastaus += "</p>";
 
             document.getElementById("vastaus").innerHTML = vastaus;
         }
