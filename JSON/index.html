@@ -55,6 +55,7 @@
         "use strict"
         fetch('tietue.JSON')
             .then(function (vastaus) {
+                console.log(vastaus);
                 return vastaus.json();
             })
             .then(function (vastausJSON) {
