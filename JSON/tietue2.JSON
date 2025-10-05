@@ -1,7 +1,9 @@
 {
     "toteutuksen_nimi": "Digitekniikat",
-    "alkamispvm": "Tällä sivustolle haetaan JSON-muotoista dataa",
-    "loppumispvm": "https://jaakkola.github.io/json/digi.JPG",
+    "alkamispvm": "13-01-2025",
+    "loppumispvm": "14.03-2025",
+    "kesto": 8,
+    "kuva": "kuva1.png",
     "osallistujat": [
         {
             "e_nimi": "Toni",
