@@ -40,16 +40,18 @@
                         <a class="nav-link" href="toteutus.html">Toinen tietue</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="taulukko.html">Taulukko</a>
+                        <a class="nav-link" href="poke.html">Pokemonhakija</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- JSON haun tulokset -->
     <div id="vastaus"></div>
 
     <script>
         "use strict"
+        // Haetaan tietue2.JSON tiedosto
         fetch('tietue2.JSON')
             .then(function (vastaus) {
                 console.log(vastaus);
@@ -61,6 +63,8 @@
             .catch(function (virhe) {
                 document.getElementById("vastaus").innerHTML = "<p>Tietojen hakeminen epäonnistui</p>";
             });
+
+        // Funktio, joka käsittelee JSON-datan
         function kerro(vastausJSON) {
             let vastaus = "<h1>" + vastausJSON.toteutuksen_nimi + "</h1><br> " +
                 vastausJSON.osallistujat.length + " kpl <br><hr>";
