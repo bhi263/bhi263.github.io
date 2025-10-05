@@ -48,7 +48,7 @@
     </nav>
     <h3>JSON-harjoitussivusto</h3>
     <div class="alert alert-info mt-4" role="alert">
-        <div id="vastaus"></div>
+        Tekstiä.
     </div>
 
     <script>
@@ -63,15 +63,14 @@
             .catch(function (virhe) {
                 document.getElementById("vastaus").innerHTML = "<p>Tietojen hakeminen epäonnistui</p>";
             });
-        function kerro(vastausJSON) {
-            let vastaus = "<h1>" + vastausJSON.otsikko + "</h1><br> " + vastausJSON.kuvaus + "<br><hr" + "<p><img src=" + vastausJSON.kuva + "</p>" + "<h3>" + "Opintojakso" + "</h3>" + "Nimi: " + vastausJSON.opintojakso.nimi + "<br>" + "Tunnus: " + vastausJSON.opintojakso.tunnus + "<br>" + "Opintopisteet: " + vastausJSON.opintojakso.opintopisteet + "<br>"
-            tiedot += "<p><h3> Aiheet </h3>";
-            for (var i = 0; i < vastausJSON.tekniikat.lenght; i++) {
-                tiedot += "<b>Aihe: " + vastausJSON.tekniikat[i].linkki + ">" + vastausJSON.tekniikat[i].linkki + "</a>" + "<br";
-            }
-            tiedot += "</p>";
-            document.getElementById("vastaus").innerHTML = vastaus;
-        }
+        function kerro(vastausJSON) { }
+        let vastaus = "<h1>" + vastausJSON.otsikko + "</h1><br> " + vastausJSON.kuvaus + "<br><hr" + "<p><img src=" + vastausJSON.kuva + "</p>" + "<h3>" + "Opintojakso" + "</h3>" + "Nimi: " + vastausJSON.opintojakso.nimi + "<br>" + "Tunnus: " + vastausJSON.opintojakso.tunnus + "<br>" + "Opintopisteet: " + vastausJSON.opintojakso.opintopisteet + "<br>"
+        tiedot += "<p><h3> Aiheet </h3>";
+        for (var i = 0; i < vastausJSON.tekniikat.lenght; i++) { }
+        tiedot += "<b>Aihe: " + vastausJSON.tekniikat[i].linkki + ">" + vastausJSON.tekniikat[i].linkki + "</a>" + "<br";
+        tiedot += "</p>";
+        document.getElementById("vastaus").innerHTML = vastaus;
+
     </script>
 </body>
 

@@ -1,0 +1,27 @@
+{
+    "toteutuksen_nimi": "Digitekniikat",
+    "alkamispvm": "Tällä sivustolle haetaan JSON-muotoista dataa",
+    "loppumispvm": "https://jaakkola.github.io/json/digi.JPG",
+    "osallistujat": [
+        {
+            "e_nimi": "Toni",
+            "s_nimi": "Soprano"
+        },
+        {
+            "e_nimi": "Karmela",
+            "s_nimi": "Soprano"
+        },
+        {
+            "e_nimi": "Niitty",
+            "s_nimi": "Soprano"
+        },
+        {
+            "e_nimi": "Anttoni",
+            "s_nimi": "Soprano"
+        },
+        {
+            "e_nimi": "Jenni",
+            "s_nimi": "Melfi"
+        }
+    ]
+}
