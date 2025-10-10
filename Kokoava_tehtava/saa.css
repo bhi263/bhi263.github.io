@@ -6,9 +6,9 @@ body {
 
 /* Sääkortti */
 .card {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 1rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   border: none;
 }
 
@@ -24,10 +24,10 @@ body {
 
 /* Lomake ja painike */
 #weatherForm {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .btn-primary {
@@ -44,7 +44,7 @@ body {
 /* Otsikko */
 .p-5.bg-primary {
   background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%) !important;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Footer */
