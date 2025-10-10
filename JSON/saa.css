@@ -1,0 +1,55 @@
+/* Taustakuva ja pehmeä gradient */
+body {
+  background: linear-gradient(135deg, #aee1f9 0%, #f9f9f9 100%);
+  min-height: 100vh;
+}
+
+/* Sääkortti */
+.card {
+  background: rgba(255,255,255,0.85);
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border: none;
+}
+
+.card-title {
+  color: #1976d2;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1.15rem;
+  color: #333;
+}
+
+/* Lomake ja painike */
+#weatherForm {
+  background: rgba(255,255,255,0.7);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #1565c0 60%, #42a5f5 100%);
+}
+
+/* Otsikko */
+.p-5.bg-primary {
+  background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* Footer */
+.bg-dark.text-white.text-center {
+  background: linear-gradient(90deg, #263238 60%, #607d8b 100%) !important;
+  color: #fff !important;
+  letter-spacing: 1px;
+}
